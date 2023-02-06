@@ -1,5 +1,5 @@
 // @author - Matthew Ernst
-// @version - 1.2
+// @version - 1.2.1
 
 import java.util.*;
 import java.lang.*;
@@ -8,9 +8,7 @@ public class Gameshow
 {
     static Random rand = new Random();
 
-    static double totalRuns = 0;
-    static double totalWinsDoorSwitch = 0;
-    static double totalWinsDoorStay = 0;
+
 
     static public void slammer(int runtime)
     {
@@ -18,6 +16,10 @@ public class Gameshow
         int generatedDoor; // -> Denotes the door that is holding the car.
         int goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
         int switchDoor = 0; // -> Denotes the door that will be swapped to.
+
+        double totalRuns = 0;
+        double totalWinsDoorSwitch = 0;
+        double totalWinsDoorStay = 0;
 
         //Generates data in regards too switching the door.
         for(int i = 0; i < runtime; i++)

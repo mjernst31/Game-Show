@@ -1,3 +1,6 @@
+//@author - Matthew Ernst
+//@version - 1.2.1
+
 import java.util.Scanner;
 
 public class Main
