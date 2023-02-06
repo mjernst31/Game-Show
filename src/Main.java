@@ -11,26 +11,29 @@ public class Main
 
         while(runFlag)
         {
-            System.out.print("How many times would you like to run the gameshow simulation? Enter '0' to quit. ");
+            System.out.print("How many times would you like to run the gameshow simulation? To quit, enter a character or 0. ");
 
-            if(input.hasNextInt())
+            if (input.hasNextInt())
             {
                 enter = input.nextInt();
 
-                if(enter == 0)
+                if (enter != 0)
                 {
-                    System.out.print("Goodbye!");
-                    runFlag = false; // -> cancels the loop and exits.
+                    Gameshow.slammer(enter);
                 }
 
                 else
                 {
-                    Gameshow.slammer(enter);
+                    runFlag = false;
+                    System.out.println("Goodbye!");
                 }
             }
 
             else
-                System.out.println("Please enter an integer.");
+            {
+                System.out.println("Goodbye!");
+                runFlag = false;
+            }
         }
 
     }
