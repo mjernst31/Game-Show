@@ -1,53 +1,56 @@
-//@author - Matthew Ernst
-//@version - 1.0
+// @author - Matthew Ernst
+// @version - 1.1
 
 import java.util.*;
+import java.lang.*;
 
 public class Gameshow
 {
     static Random rand = new Random();
 
-    /*
-    @Goal - I need to generate a number that defines the percentage of liklihood of winning if you change numbers.
-    once given the oppurtunity.*/
-
     static double totalRuns = 0;
-    static double totalWins = 0;
+    static double totalWinsDoorSwitch = 0;
+    static double totalWinsDoorStay = 0;
 
     static public void slammer(int runtime)
     {
-        int selectedDoor = 0; // -> Denotes the door that the player selected.
-        int generatedDoor = 0; // -> Denotes the door that is holding the car.
+        int selectedDoor; // -> Denotes the door that the player selected.
+        int generatedDoor; // -> Denotes the door that is holding the car.
         int goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
         int switchDoor = 0; // -> Denotes the door that will be swapped to.
 
+        //Generates data in regards too switching the door.
         for(int i = 0; i < runtime; i++)
         {
-            //Generates a number that selects the door which has the car and sets a slot in the array to 1, representing the car.
+            //Generates a number (1 to 3) which denotes a door choice.
             generatedDoor = rand.nextInt(3) + 1;
-
-            //Program players door choice
             selectedDoor = rand.nextInt(3) + 1;
 
-            //Reveal that one of the doors that isnt the selected door AND generated door
+            //Generates the 'goat' door, cant be selectedDoor or generatedDoor
             while((goatDoor != selectedDoor) && (goatDoor != generatedDoor))
-                goatDoor = rand.nextInt(3) + 1;
+                goatDoor = rand.nextInt(3) + 1; //
 
-            //Calculate the chances of winning if swapping
+            //If you didn't switch doors, this would decide whether you win or lose.
+            if(selectedDoor == generatedDoor)
+                totalWinsDoorStay++;
+
+            //Generates the door to switch too
             while((switchDoor != selectedDoor) && (switchDoor != goatDoor))
-            {
                 switchDoor = rand.nextInt(3) + 1;
-            }
 
+            //If you did switch doors, this would decide whether you win or lose.
             if(switchDoor == generatedDoor)
-                totalWins++;
+                totalWinsDoorSwitch++;
 
+            //increment the run (for stat calculations towards the end.)
             totalRuns++;
         }
 
-        System.out.println("\nTotal Runs: " + totalRuns);
-        System.out.println("Total Wins: " + totalWins);
-
-        System.out.println("Percentage of Winning: " + ((totalWins/totalRuns))*100);
+        //Outputs the statistics of the runtime calculations
+        System.out.println((int)totalRuns + " runs...");
+        System.out.println("\nTotal wins when switching door choice: " + (int)(totalWinsDoorSwitch));
+        System.out.println("Total wins when keeping door choice: " + (int)totalWinsDoorStay);
+        System.out.printf("\nChance of winning when switching door choice: %.2f%%", (totalWinsDoorSwitch/totalRuns)*100);
+        System.out.printf("\nChance of winning when keeping choice: %.2f%%\n\n", (totalWinsDoorStay/totalRuns)*100);
     }
 }
