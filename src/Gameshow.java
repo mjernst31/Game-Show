@@ -8,14 +8,16 @@ public class Gameshow
 {
     static Random rand = new Random();
 
-
-
+    /*
+    @param runtime  The integer value which the method in main sends, denotes how
+    many instances of the simulation should be ran.
+     */
     static public void slammer(int runtime)
     {
         int selectedDoor; // -> Denotes the door that the player selected.
         int generatedDoor; // -> Denotes the door that is holding the car.
-        int goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
-        int switchDoor = 0; // -> Denotes the door that will be swapped to.
+        int goatDoor;
+        int switchDoor;
 
         double totalRuns = 0;
         double totalWinsDoorSwitch = 0;
@@ -29,14 +31,16 @@ public class Gameshow
             selectedDoor = rand.nextInt(3) + 1;
 
             //Generates the 'goat' door, cant be selectedDoor or generatedDoor
+            goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
             while((goatDoor != selectedDoor) && (goatDoor != generatedDoor))
-                goatDoor = rand.nextInt(3) + 1; //
+                goatDoor = rand.nextInt(3) + 1;
 
             //If you didn't switch doors, this would decide whether you win or lose.
             if(selectedDoor == generatedDoor)
                 totalWinsDoorStay++;
 
             //Generates the door to switch too
+            switchDoor = 0; // -> Denotes the door that will be swapped to.
             while((switchDoor != selectedDoor) && (switchDoor != goatDoor))
                 switchDoor = rand.nextInt(3) + 1;
 
