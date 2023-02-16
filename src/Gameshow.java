@@ -1,5 +1,10 @@
-// @author - Matthew Ernst
-// @version - 1.3
+/**
+ * This class simulates the "Monty Hall problem"
+ The contestant can either keep their original choice or switch to another door. The goal of this
+ simulation is to prove switching is more likely to result in a win.
+ @author Matthew Ernst
+ @version 1.3
+ */
 
 import java.util.*;
 import java.lang.*;
@@ -12,11 +17,6 @@ public class Gameshow {
     many instances of the simulation should be ran.
      */
     static public void slammer(int runtime) {
-        int selectedDoor; // -> Denotes the door that the player selected.
-        int generatedDoor; // -> Denotes the door that is holding the car.
-        int goatDoor;
-        int switchDoor;
-
         double totalRuns = 0;
         double totalWinsDoorSwitch = 0;
         double totalWinsDoorStay = 0;
@@ -24,11 +24,11 @@ public class Gameshow {
         //Generates data in regards too switching the door.
         for(int i = 0; i < runtime; i++) {
             //Generates a number (1 to 3) which denotes a door choice.
-            generatedDoor = rand.nextInt(3) + 1;
-            selectedDoor = rand.nextInt(3) + 1;
+            int generatedDoor = rand.nextInt(3) + 1;
+            int selectedDoor = rand.nextInt(3) + 1;
 
             //Generates the 'goat' door, cant be selectedDoor or generatedDoor
-            goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
+            int goatDoor = 0; // -> Denotes the door that is revealed to be a goat.
             while((goatDoor != selectedDoor) && (goatDoor != generatedDoor))
                 goatDoor = rand.nextInt(3) + 1;
 
@@ -37,7 +37,7 @@ public class Gameshow {
                 totalWinsDoorStay++;
 
             //Generates the door to switch too
-            switchDoor = 0; // -> Denotes the door that will be swapped to.
+           int switchDoor = 0; // -> Denotes the door that will be swapped to.
             while((switchDoor != selectedDoor) && (switchDoor != generatedDoor))
                 switchDoor = rand.nextInt(3) + 1;
 
