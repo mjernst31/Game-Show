@@ -1,5 +1,5 @@
 // @author - Matthew Ernst
-// @version - 1.2.1
+// @version - 1.3
 
 import java.util.*;
 import java.lang.*;
@@ -41,7 +41,7 @@ public class Gameshow
 
             //Generates the door to switch too
             switchDoor = 0; // -> Denotes the door that will be swapped to.
-            while((switchDoor != selectedDoor) && (switchDoor != goatDoor))
+            while((switchDoor != selectedDoor) && (switchDoor != generatedDoor))
                 switchDoor = rand.nextInt(3) + 1;
 
             //If you did switch doors, this would decide whether you win or lose.
