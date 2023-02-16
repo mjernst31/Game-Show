@@ -4,16 +4,14 @@
 import java.util.*;
 import java.lang.*;
 
-public class Gameshow
-{
+public class Gameshow {
     static Random rand = new Random();
 
     /*
     @param runtime  The integer value which the method in main sends, denotes how
     many instances of the simulation should be ran.
      */
-    static public void slammer(int runtime)
-    {
+    static public void slammer(int runtime) {
         int selectedDoor; // -> Denotes the door that the player selected.
         int generatedDoor; // -> Denotes the door that is holding the car.
         int goatDoor;
@@ -24,8 +22,7 @@ public class Gameshow
         double totalWinsDoorStay = 0;
 
         //Generates data in regards too switching the door.
-        for(int i = 0; i < runtime; i++)
-        {
+        for(int i = 0; i < runtime; i++) {
             //Generates a number (1 to 3) which denotes a door choice.
             generatedDoor = rand.nextInt(3) + 1;
             selectedDoor = rand.nextInt(3) + 1;
